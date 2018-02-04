@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/edit_bg">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="车辆账户充值"
+            android:textSize="20sp"
+            android:background="#333c433c"
+            android:layout_marginBottom="10dp"/>
+        <LinearLayout
+            android:layout_marginLeft="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车牌号:" />
+
+            <TextView
+                android:id="@+id/carNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="辽A10003 " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值金额:"/>
+            <EditText
+                android:inputType="number"
+                android:id="@+id/moneyText"
+                android:singleLine="true"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="1-999"
+                android:padding="3dp"
+                android:background="@drawable/edit_bg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/determine"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="充值"/>
+            <Button
+                android:id="@+id/canel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="取消"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
