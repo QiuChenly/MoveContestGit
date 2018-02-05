@@ -3,7 +3,6 @@ package com.wzg.model.adapter;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.accout_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_accout, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -83,6 +82,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
 
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -123,6 +123,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
      */
     private void ejectDialog(View view, final ViewHolder holder) {
 
+
         mBuilder = new AlertDialog.Builder(view.getContext());
 
         final View inflate = LayoutInflater.from(view.getContext()).inflate(R.layout.recharge_dialog, null);
@@ -150,9 +151,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
                         Integer nowInteger = Integer.valueOf(mMoneyStr);
                         oldInteger += nowInteger;
                         account.setBalance("余额:" + oldInteger + "元");
-                        isMoneyNotice(holder, oldInteger);
-                        holder.mBalance.setText(account.getBalance());
-                        Log.d(TAG, "ejectDialog: -----------" + account.getBalance());
+                        notifyDataSetChanged();
                     }
                 }
                 carNumbers = "";

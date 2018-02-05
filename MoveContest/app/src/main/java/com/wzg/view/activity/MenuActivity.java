@@ -13,10 +13,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wzg.R;
 import com.wzg.view.fragment.AccountManageFragment;
+import com.wzg.view.fragment.BusInquiryFragment;
+
+import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -24,6 +28,13 @@ public class MenuActivity extends AppCompatActivity {
     private NavigationView mNavView;
     private ActionBar mActionBar;
     private DrawerLayout mDrawerLayout;
+    private TextView mMainTitle;
+    private TextView mRecharge;
+    private TextView mBatch;
+    private AccountManageFragment mAccountManageFragment;
+    private BusInquiryFragment mBusInquiryFragment;
+    private FragmentManager mFragmentManager;
+    private FragmentTransaction mTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +48,15 @@ public class MenuActivity extends AppCompatActivity {
 
     /**
      * 初始化控件
-     *
      */
     private void initControl() {
-        findViewById(R.id.mainTitle).setVisibility(View.INVISIBLE);
-        findViewById(R.id.recharge).setVisibility(View.INVISIBLE);
-        findViewById(R.id.batch).setVisibility(View.INVISIBLE);
 
+
+        mMainTitle = findViewById(R.id.mainTitle);
+        mRecharge = findViewById(R.id.recharge);
+        mBatch = findViewById(R.id.batch);
+
+        hideTitles();
 
 
         mToolbar = findViewById(R.id.toolbar);
@@ -61,16 +74,31 @@ public class MenuActivity extends AppCompatActivity {
 
         mNavView = findViewById(R.id.nav_view);
         mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_userManage:
+                        hideTitles();
+                        hideFragment(mTransaction);
+                        mAccountManageFragment = new AccountManageFragment();
+                        mMainTitle.setVisibility(View.VISIBLE);
+                        mRecharge.setVisibility(View.VISIBLE);
+                        mBatch.setVisibility(View.VISIBLE);
+                        mMainTitle.setText("账户管理");
+                        replaceFragment(mAccountManageFragment);
+                        break;
+                    case R.id.nav_busInquiry:
 
+                        hideTitles();
+                        hideFragment(mTransaction);
 
-                        findViewById(R.id.mainTitle).setVisibility(View.VISIBLE);
-                        findViewById(R.id.recharge).setVisibility(View.VISIBLE);
-                        findViewById(R.id.batch).setVisibility(View.VISIBLE);
-                        replaceFragment(new AccountManageFragment());
+                        mBusInquiryFragment = new BusInquiryFragment();
+                        mMainTitle.setVisibility(View.VISIBLE);
+                        mMainTitle.setText("公交查询");
+                        replaceFragment(mBusInquiryFragment);
+
                         break;
                     default:
                         Toast.makeText(MenuActivity.this, "出错了", Toast.LENGTH_SHORT).show();
@@ -85,11 +113,6 @@ public class MenuActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
     }
 
 
@@ -99,16 +122,15 @@ public class MenuActivity extends AppCompatActivity {
      * @param fragment
      */
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.page_layout, fragment);
-        transaction.commit();
+        mFragmentManager = getSupportFragmentManager();
+        mTransaction = mFragmentManager.beginTransaction();
+        mTransaction.replace(R.id.page_layout, fragment);
+        mTransaction.commit();
 
     }
 
 
     /**
-     *
      * 顶部菜单的选择项
      *
      * @param item
@@ -124,4 +146,30 @@ public class MenuActivity extends AppCompatActivity {
         }
         return false;
     }
+
+
+    /**
+     * 将多余的标题隐藏
+     */
+    private void hideTitles() {
+        mMainTitle.setVisibility(View.INVISIBLE);
+        mRecharge.setVisibility(View.INVISIBLE);
+        mBatch.setVisibility(View.INVISIBLE);
+    }
+
+
+    private void hideFragment(FragmentTransaction fragmentTransaction) {
+        // 如果此Fragment不为空的话就隐藏起来
+        if (mAccountManageFragment != null) {
+            fragmentTransaction.hide(mAccountManageFragment);
+        }
+
+        if (mBusInquiryFragment != null) {
+            fragmentTransaction.hide(mBusInquiryFragment);
+        }
+
+
+    }
+
+
 }

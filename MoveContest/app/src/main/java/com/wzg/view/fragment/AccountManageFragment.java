@@ -3,7 +3,6 @@ package com.wzg.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,12 +16,15 @@ import com.wzg.model.adapter.AccountAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by WangZhiGang on 2018/2/2.
- */
 
+/**
+ *
+ * 账户管理
+ *
+ */
 public class AccountManageFragment extends Fragment {
 
+    private static final String TAG = "AccountManageFragment";
     private List<Account> mAccountList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
@@ -35,7 +37,7 @@ public class AccountManageFragment extends Fragment {
         initData();
 
 
-        View view = inflater.inflate(R.layout.accout_manage, container,false);
+        View view = inflater.inflate(R.layout.fragment_manage, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(view.getContext());
@@ -48,9 +50,7 @@ public class AccountManageFragment extends Fragment {
 
 
     /**
-     *
      * 初始化数据
-     *
      */
     private void initData() {
         Account account1 = new Account("1", R.drawable.car1, "辽A10001", "车主:张三", "余额:100元");
@@ -65,11 +65,6 @@ public class AccountManageFragment extends Fragment {
         Account account4 = new Account("4", R.drawable.car4, "辽A10004", "车主:赵六", "余额:1元");
         mAccountList.add(account4);
     }
-
-
-
-
-
 
 
 }

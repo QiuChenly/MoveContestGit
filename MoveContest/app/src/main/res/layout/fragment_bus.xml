@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--汽车信息-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#D4D1D1">
+
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/carImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/car"
+            android:layout_alignParentBottom="true"/>
+
+
+
+        <TextView
+            android:layout_toLeftOf="@+id/time_txt"
+            android:id="@+id/bus_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingRight="20dp"
+            android:text="901路公交汽车"/>
+
+        <TextView
+            android:id="@+id/time_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="首: 6:00 末: 21:00"/>
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:layout_toRightOf="@+id/time_txt"
+            android:id="@+id/people_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="当前承载能力:1211人"/>
+
+
+        <Button
+            android:layout_marginRight="10dp"
+            android:id="@+id/btn_details"
+            android:layout_alignParentBottom="true"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:textSize="10sp"
+            android:background="@drawable/btn_bg"
+            android:text="详情"/>
+
+    </RelativeLayout>
+
+    <!--列表-->
+    <ExpandableListView
+        android:id="@+id/site_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:divider="@null"
+        android:dividerHeight="8dip"
+        />
+
+
+</LinearLayout>
