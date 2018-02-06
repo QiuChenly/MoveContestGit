@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,7 @@ import java.util.List;
 
 
 /**
- *
  * 公交查询
- *
- *
  */
 
 public class BusInquiryFragment extends Fragment {
@@ -73,11 +71,9 @@ public class BusInquiryFragment extends Fragment {
 
 
     /**
-     *
      * 加载数据
-     *
      */
-    private void initData(){
+    private void initData() {
 
         mSitesList = new ArrayList<>();
         {
@@ -100,11 +96,10 @@ public class BusInquiryFragment extends Fragment {
         }
 
 
-
         mBuses = new ArrayList<>();
 
-        for(int i = 0;i<=10;i++){
-            Bus bus = new Bus(i+1, i+1, (i+1) * (i+1));
+        for (int i = 0; i <= 10; i++) {
+            Bus bus = new Bus(i + 1, i + 1, (i + 1) * (i + 1));
             mBuses.add(bus);
 
         }
@@ -114,10 +109,8 @@ public class BusInquiryFragment extends Fragment {
 
     /**
      * 创建弹出框
-     *
      */
-    private void createPopup(View view){
-
+    private void createPopup(View view) {
 
 
         mBuilder = new AlertDialog.Builder(view.getContext());
@@ -144,28 +137,30 @@ public class BusInquiryFragment extends Fragment {
         mTableLayout.setStretchAllColumns(true);
 
         // 生成3行，4列表单
-        for(int row = 0; row<mBuses.size(); row++){
+        for (int row = 0; row < mBuses.size(); row++) {
             TableRow tableRow = new TableRow(view.getContext());
-            tableRow.setBackgroundColor(Color.rgb(222,220,210));
-            for(int col = 0;col<3;col++){
+            tableRow.setBackgroundColor(Color.rgb(222, 220, 210));
+            for (int col = 0; col < 3; col++) {
 
                 TextView textView = new TextView(view.getContext());
                 textView.setBackgroundResource(R.drawable.shapee);
-                if(col == 0){
+                if (col == 0) {
                     textView.setText(String.valueOf(mBuses.get(row).getId()));
 
-                }else if(col ==1){
+                } else if (col == 1) {
                     textView.setText(String.valueOf(mBuses.get(row).getBusId()));
 
-                }else {
+                } else {
                     textView.setText(String.valueOf(mBuses.get(row).getPeople()));
 
                 }
+                textView.setGravity(Gravity.CENTER);
+
                 tableRow.addView(textView);
 
             }
             // 新建的tableRow添加到TableLayout
-            mTableLayout.addView(tableRow,new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+            mTableLayout.addView(tableRow, new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         }
 

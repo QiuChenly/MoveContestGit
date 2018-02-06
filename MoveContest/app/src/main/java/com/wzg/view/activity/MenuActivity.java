@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.wzg.R;
 import com.wzg.view.fragment.AccountManageFragment;
 import com.wzg.view.fragment.BusInquiryFragment;
+import com.wzg.view.fragment.TrafficLightsFragment;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +36,7 @@ public class MenuActivity extends AppCompatActivity {
     private BusInquiryFragment mBusInquiryFragment;
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
+    private TrafficLightsFragment mTrafficLightsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class MenuActivity extends AppCompatActivity {
         mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
 
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -100,6 +103,19 @@ public class MenuActivity extends AppCompatActivity {
                         replaceFragment(mBusInquiryFragment);
 
                         break;
+
+                    case R.id.nav_trafficLights:
+                        hideTitles();
+                        hideFragment(mTransaction);
+
+                        mTrafficLightsFragment = new TrafficLightsFragment();
+                        mMainTitle.setVisibility(View.VISIBLE);
+                        mMainTitle.setText("红绿灯管理");
+                        replaceFragment(mTrafficLightsFragment);
+
+                        break;
+
+
                     default:
                         Toast.makeText(MenuActivity.this, "出错了", Toast.LENGTH_SHORT).show();
                         break;
@@ -158,6 +174,10 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 将所有的Fragment隐藏
+     * @param fragmentTransaction
+     */
     private void hideFragment(FragmentTransaction fragmentTransaction) {
         // 如果此Fragment不为空的话就隐藏起来
         if (mAccountManageFragment != null) {
@@ -166,6 +186,9 @@ public class MenuActivity extends AppCompatActivity {
 
         if (mBusInquiryFragment != null) {
             fragmentTransaction.hide(mBusInquiryFragment);
+        }
+        if ( mTrafficLightsFragment!= null) {
+            fragmentTransaction.hide(mTrafficLightsFragment);
         }
 
 

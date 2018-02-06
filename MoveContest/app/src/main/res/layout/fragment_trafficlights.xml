@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_marginLeft="22dp"
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="排序:"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_txt"
+            android:layout_marginLeft="10dp"
+            android:entries="@array/languages"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询"
+            android:layout_toLeftOf="@+id/batch_btn"
+            android:padding="1dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <Button
+            android:id="@+id/batch_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="批量设置"
+            android:layout_alignParentRight="true"
+            android:padding="1dp"/>
+    </RelativeLayout>
+
+    <TableLayout
+        android:stretchColumns="*"
+        android:layout_below="@+id/title_txt"
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TableRow
+            android:layout_margin="0.5dp">
+
+            <TextView
+                android:text="路口"
+                android:gravity="center"/>
+            <TextView
+                android:text="红灯时长(S)"
+                android:gravity="center"/>
+            <TextView
+                android:text="黄灯时长(S)"
+                android:gravity="center"/>
+            <TextView
+                android:text="绿灯时长(S)"
+                android:gravity="center"/>
+            <TextView
+                android:text="操作项"
+                android:gravity="center"/>
+            <TextView
+                android:text="设置"
+                android:gravity="center"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
